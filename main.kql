@@ -1,0 +1,31 @@
+search in (SecurityEvent, SecurityAlert, A*) "err"
+
+SecurityEvent
+| where TimeGenerated > ago(1h)
+| where EventID == 4624
+| where AccountType =~ "user"
+
+let lowActivityAccounts =
+  SecurityEvent
+  | summarize cnt = count() by Account
+  | where cnt < 1000;
+LowActivityAccounts | where Account contains "SQL"
+
+SecurityEvent
+| summarize count() by bin(TimeGenerated, Id)
+| render timechart
+
+SecurityEvent
+| where ProcessName != "" and Process != ""
+| extend StartDir = substring(ProcessName,0, string_size(ProcessName)-string_size(Process))
+
+SecurityEvent
+| where ProcessName !="" and Process != ""
+| extend StartDir = substring(ProcessName,0, string_size(ProcessName)-string_size(Process))
+| order by StartDir desc, Process asc
+
+SecurityEvent
+| where ProcessName !="" and Process != ""
+| extend StartDir = substring(ProcessName,0, string_size(ProcessName)-string_size(Process))
+| order by StartDir desc, Process asc
+| project-away ProcessName
