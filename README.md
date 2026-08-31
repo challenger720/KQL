@@ -1,4 +1,4 @@
-## Use the **table** reference ##
+Use the **table** reference
 ```
 SecurityEvent  
 SecurityAlert
