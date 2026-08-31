@@ -8,7 +8,7 @@ A comprehensive reference guide for Kusto Query Language (KQL) operators, Micros
 ## 1. Core KQL Operators
 
 ### The table reference ###
-The simplest queries you can enter, and run are the table references
+The simplest queries you can enter and run are the table references
 ```
 SecurityEvent  
 SecurityAlert
