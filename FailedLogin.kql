@@ -1,0 +1,5 @@
+SigninLogs
+| where ResultType != 0
+| summarize FailedCount = count() by UserPrincipalName, IPAddress
+| order by FailedCount desc
+| take 20
