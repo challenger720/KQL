@@ -1,0 +1,4 @@
+AuditLogs
+| where OperationName has "Add member to role"
+| where TargetResources has "Global Administrator" or TargetResources has "Privileged"
+| project TimeGenerated, InitiatedBy, TargetResources, Result
