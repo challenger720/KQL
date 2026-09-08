@@ -1,0 +1,4 @@
+SigninLogs
+| where ResultType == 0
+| summarize Logins = count() by Location = strcat(LocationDetails.countryOrRegion, " - ", LocationDetails.city), UserPrincipalName
+| order by Logins desc
